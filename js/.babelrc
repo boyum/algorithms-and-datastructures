@@ -1,0 +1,16 @@
+{
+    "plugins": [
+        "transform-es2015-modules-commonjs",
+        "transform-runtime"
+    ],
+    "presets": [
+        "es2017",
+        "es2015"
+    ],
+    // "ignore": "test.js",
+    "env": {
+        "development": {
+            "sourceMaps": "inline"
+        }
+    }
+}

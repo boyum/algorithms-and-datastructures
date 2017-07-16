@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+ - "iojs"
+ - "8"
+before_script:
+  - npm install -g jsinspect ava xo
+cache:
+  directories:
+     - "node_modules"
+script: 
+  - cd ./js
+  - npm run travis
+
+after_success: npm run coverage

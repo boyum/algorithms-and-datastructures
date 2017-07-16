@@ -87,6 +87,7 @@ export default class LinkedList {
    * Remove every item from the list
    */
   clear() {
+    // TODO: Fix memory leak problem
     if (this._size === 0) {
       return;
     }

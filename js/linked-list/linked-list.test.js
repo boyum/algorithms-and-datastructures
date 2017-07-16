@@ -1,8 +1,6 @@
-// Const test = require('ava');
-// const LinkedList = require('./linked-list');
-
 import test from 'ava';
 import LinkedList from './linked-list';
+import { iterate } from 'leakage';
 
 /** @type {LinkedList} */
 let list;
@@ -34,6 +32,23 @@ test('clear() removes every element from the list', t => {
 
   t.is(list.size(), 0);
 });
+
+test('clear() doesn\'t leak', () => {
+  iterate(() => {
+    const newList = new LinkedList();
+    const el1 = '1';
+    const el2 = '2';
+    const el3 = '3';
+    const el4 = '4';
+  
+    newList.add(el1);
+    newList.add(el2);
+    newList.add(el3);
+    newList.add(el4);
+
+    newList.clear();
+  })
+})
 
 test('add(item) adds an item to the end of the list', t => {
   list.add('5');

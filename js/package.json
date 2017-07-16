@@ -48,5 +48,8 @@
   "xo": {
     "space": true,
     "fix": true
+  },
+  "dependencies": {
+    "memwatch-next": "^0.3.0"
   }
 }

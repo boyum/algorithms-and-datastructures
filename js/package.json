@@ -33,8 +33,8 @@
     "failFast": true,
     "failWithoutAssertions": false,
     "files": [
-      "lists/linked-list/**/*.test.js",
-      "sorting/bubble-sort/**/*.test.js"
+      "lists/**/*.test.js",
+      "sorting/**/*.test.js"
     ],
     "modules": true,
     "powerAssert": false,
@@ -42,8 +42,8 @@
       "babel-register"
     ],
     "source": [
-      "lists/linked-list/**/*.js",
-      "sorting/bubble-sort/**/*.js"
+      "lists/**/*.js",
+      "sorting/**/*.js"
     ],
     "tap": true
   },

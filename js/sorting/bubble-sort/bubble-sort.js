@@ -1,37 +1,39 @@
-export default class BubbleSort {
+  export default class BubbleSort {
   /**
    *
    * @param {*[]} array
+   * @return {*[]}
    */
-  sort(array) {
-    const newArr = [...array];
-    for (let i = 0; i < newArr.length; i++) {
-      for (let j = 0; j < (newArr.length - i); j++) {
-        if (newArr[j] > newArr[j + 1]) {
-          this.swap(newArr, j, j + 1);
+    sortAsc(array) {
+      const newArr = [...array];
+      for (let i = 0; i < newArr.length; i++) {
+        for (let j = 0; j < (newArr.length - i); j++) {
+          if (newArr[j] > newArr[j + 1]) {
+            this.swap(newArr, j, j + 1);
+          }
         }
       }
-    }
 
-    return newArr;
-  }
+      return newArr;
+    }
 
   /**
    *
    * @param {*[]} array
+   * @return {*[]}
    */
-  sortReverse(array) {
-    const newArr = [...array];
-    for (let i = 0; i < newArr.length; i++) {
-      for (let j = 0; j < (newArr.length - i); j++) {
-        if (newArr[j] < newArr[j + 1]) {
-          this.swap(newArr, j, j + 1);
+    sortDesc(array) {
+      const newArr = [...array];
+      for (let i = 0; i < newArr.length; i++) {
+        for (let j = 0; j < (newArr.length - i); j++) {
+          if (newArr[j] < newArr[j + 1]) {
+            this.swap(newArr, j, j + 1);
+          }
         }
       }
-    }
 
-    return newArr;
-  }
+      return newArr;
+    }
 
   /**
    *
@@ -39,10 +41,10 @@ export default class BubbleSort {
    * @param {number} index1
    * @param {number} index2
    */
-  swap(array, index1, index2) {
-    const temp = array[index1];
+    swap(array, index1, index2) {
+      const temp = array[index1];
 
-    array[index1] = array[index2];
-    array[index2] = temp;
-  }
+      array[index1] = array[index2];
+      array[index2] = temp;
+    }
 }

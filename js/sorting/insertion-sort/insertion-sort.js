@@ -15,7 +15,6 @@ export default class InsertionSort {
       for (let j = i; j > 0; j--) {
         if (newArr[j] < newArr[j - 1]) {
           this.swap(newArr, j, j - 1);
-          console.log(newArr);
         }
       }
     }
@@ -39,7 +38,6 @@ export default class InsertionSort {
       for (let j = i; j > 0; j--) {
         if (newArr[j] > newArr[j - 1]) {
           this.swap(newArr, j, j - 1);
-          console.log(newArr);
         }
       }
     }

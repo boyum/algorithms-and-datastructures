@@ -12,12 +12,12 @@ addons:
 before_install:
   - if [[ $TRAVIS_OS_NAME == "linux" ]]; then export CXX=g++-4.8; fi
 before_script:
+  - cd ./js
   - npm install -g jsinspect xo ava nyc && npm install
 cache:
   directories:
      - "node_modules"
 script: 
-  - cd ./js
   - npm run travis
 
 after_success: npm run coverage

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "travis": "npm build && npm test && jsinspect && npm run nyc-coverage",
+    "travis": "npm build && npm test && npm run nyc-coverage",
     "test": "xo --fix && nyc ava",
     "nyc-coverage": "nyc check-coverage --lines 95 --functions 95 --branches 95",
     "coverage": "nyc report --reporter=text-lcov | coveralls",

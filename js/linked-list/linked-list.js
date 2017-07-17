@@ -38,7 +38,12 @@ export default class LinkedList {
    * @param {number} index
    */
   addAtIndex(item, index) {
-    if (index > (this._size)) {
+    if (index >= (this._size)) {
+      throw new RangeError(`Index (${index}) is greater than or equal to size (${this._size}).`);
+    }
+
+    if (index === 0) {
+      this.addFirst(item);
       return;
     }
 
@@ -46,13 +51,9 @@ export default class LinkedList {
 
     const prevNode = this.getNode(index - 1);
 
-    if (prevNode === null) {
-      this._first = newNode;
-    } else {
-      const nextNode = prevNode._next;
-      prevNode._next = newNode;
-      newNode._next = nextNode;
-    }
+    const nextNode = prevNode._next;
+    prevNode._next = newNode;
+    newNode._next = nextNode;
 
     this._size++;
   }
@@ -78,6 +79,8 @@ export default class LinkedList {
 
     this._first = newNode;
     newNode._next = tempNode;
+
+    this._size++;
   }
 
   /**
@@ -88,7 +91,8 @@ export default class LinkedList {
       return;
     }
     let node = this._first;
-    let nextNode = node === null ? null : node;
+    // Let nextNode = node === null ? null : node._next;
+    let nextNode = node._next;
 
     while (nextNode !== null) {
       node = null;
@@ -96,7 +100,7 @@ export default class LinkedList {
       nextNode = node._next;
     }
 
-    node = null;
+    this._first = null;
     this._size = 0;
   }
 
@@ -132,7 +136,7 @@ export default class LinkedList {
    * @return {boolean}
    */
   contains(item) {
-    if (this._size === 0) {
+    if (this._size === 0 || typeof item === 'undefined') {
       return false;
     }
 
@@ -169,16 +173,12 @@ export default class LinkedList {
    * @return {*}
    */
   get(index) {
-    if (this._size === 0 || index >= this._size) {
-      return null;
+    if (index >= this._size) {
+      throw new RangeError(`Index (${index}) is greater than or equal to size (${this._size}).`);
     }
 
     let node = this._first;
     let i = 0;
-
-    if (node === null) {
-      return null;
-    }
 
     while (node._next !== null && i++ < index) {
       node = node._next;
@@ -193,17 +193,15 @@ export default class LinkedList {
    * @return {LinkedListNode}
    */
   getNode(index) {
-    if (this._size === 0 || index >= this._size) {
-      return null;
+    if (index >= this._size) {
+      throw new RangeError(`Index (${index}) is greater than or equal to size (${this._size}).`);
     }
 
     let node = this._first;
     let i = 0;
 
-    if (node) {
-      while (i++ < index) {
-        node = node._next;
-      }
+    while (i++ < index) {
+      node = node._next;
     }
 
     return node;
@@ -216,7 +214,7 @@ export default class LinkedList {
    */
   getLast() {
     if (this._size === 0) {
-      return;
+      return null;
     }
     let lastNode;
     this.traverse((node, index) => {
@@ -234,7 +232,7 @@ export default class LinkedList {
    */
   getLastNode() {
     if (this._size === 0) {
-      return;
+      return null;
     }
     let lastNode;
     this.traverse((node, index) => {
@@ -253,7 +251,7 @@ export default class LinkedList {
    * @return {number}
    */
   indexOf(item) {
-    if (this._size === 0) {
+    if (this._size === 0 || typeof item === 'undefined') {
       return -1;
     }
 
@@ -276,7 +274,7 @@ export default class LinkedList {
    * @return {number}
    */
   lastIndexOf(item) {
-    if (this._size === 0) {
+    if (this._size === 0 || typeof item === 'undefined') {
       return -1;
     }
 
@@ -305,10 +303,6 @@ export default class LinkedList {
    * @param {function(LinkedListNode, number)} callback
    */
   traverse(callback) {
-    if (this._size === 0) {
-      return;
-    }
-
     let node = this._first;
     let i = 0;
 

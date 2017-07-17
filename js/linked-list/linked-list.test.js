@@ -32,6 +32,34 @@ test('clear() removes every element from the list', t => {
   list.clear();
 
   t.is(list.size(), 0);
+  t.is(list._first, null);
+});
+
+test('clear() does not break when used on an empty list', t => {
+  const newList = new LinkedList();
+  newList.clear();
+
+  t.is(newList._first, null);
+});
+
+test('clear() does not break when used on a list with only one element', t => {
+  const newList = new LinkedList();
+  newList.add('item');
+  newList.clear();
+
+  t.is(newList._first, null);
+});
+
+test('clear() empties the entire list', t => {
+  let count = 0;
+
+  list.clear();
+
+  list.traverse(() => {
+    count++;
+  });
+
+  t.is(count, 0);
 });
 
 // Test('clear() doesn\'t leak', () => {
@@ -75,11 +103,29 @@ test('add() sets the second last item\'s `_next` value to the new item\'s node',
   t.is(secondLast._next._data, '5');
 });
 
-test('addWithIndex(item, i) adds an item to the specified index', t => {
+test('addAtIndex() adds an item to the specified index', t => {
   const el = '5';
   list.addAtIndex(el, 3);
 
   t.is(list.get(3), el);
+});
+
+test('addAtIndex(item, 0) adds an item to the beginning of the list', t => {
+  const el = '5';
+  list.addAtIndex(el, 0);
+  console.log(list.toString());
+  t.is(list.get(0), el);
+});
+
+test('addAtIndex() throws an error if index is greater than list size', t => {
+  const el = '5';
+  const size = list.size();
+  const index = size;
+  const error = t.throws(() => {
+    list.addAtIndex(el, index);
+  }, RangeError);
+
+  t.is(error.message, `Index (${index}) is greater than or equal to size (${size}).`);
 });
 
 // Test('addAll(list) adds every element of a list to the end of the list', t => {
@@ -117,6 +163,16 @@ test('contains() returns true if the list contains the specified element', t => 
   t.false(list.contains('6'));
 });
 
+test('contains() returns false if the list is empty', t => {
+  const newList = new LinkedList();
+
+  t.false(newList.contains('item'));
+});
+
+test('contains() returns false if no parameter', t => {
+  t.false(list.contains());
+});
+
 test('indexOf() returns the first index of the specified element, or -1', t => {
   const el = '5';
   const el2 = '5';
@@ -126,6 +182,16 @@ test('indexOf() returns the first index of the specified element, or -1', t => {
 
   t.is(list.indexOf('5'), 4);
   t.is(list.indexOf('6'), -1);
+});
+
+test('indexOf() returns -1 if the list is empty', t => {
+  const newList = new LinkedList();
+
+  t.is(newList.indexOf('item'), -1);
+});
+
+test('indexOf() returns -1 if no parameter', t => {
+  t.is(list.indexOf(), -1);
 });
 
 test('lastIndexOf() returns the last index of the specified element, or -1', t => {
@@ -138,15 +204,41 @@ test('lastIndexOf() returns the last index of the specified element, or -1', t =
   t.is(list.lastIndexOf('5'), 5);
 });
 
+test('lastIndexOf() returns -1 if the list is empty', t => {
+  const newList = new LinkedList();
+
+  t.is(newList.lastIndexOf('item'), -1);
+});
+
+test('lastIndexOf() returns -1 if no parameter', t => {
+  t.is(list.lastIndexOf(), -1);
+});
+
 test('element() retrieves, but does not remove, the first element of the list', t => {
   const el = list.element();
 
   t.is(el, '1');
 });
 
-test('get(index) returns the element at the specified position', t => {
+test('element() returns null if the list is empty', t => {
+  const newList = new LinkedList();
+
+  t.is(newList.element(), null);
+});
+
+test('get() returns the element at the specified position', t => {
   t.is(list.get(0), '1');
   t.is(list.get(list.size() - 1), '4');
+});
+
+test('get() throws a RangeError if the specified index is greater than or equal to the list\'s size', t => {
+  const size = list.size();
+  const index = size;
+  const error = t.throws(() => {
+    list.get(index);
+  }, RangeError);
+
+  t.is(error.message, `Index (${index}) is greater than or equal to size (${size}).`);
 });
 
 test('getNode() returns the node at the specified position', t => {
@@ -154,12 +246,34 @@ test('getNode() returns the node at the specified position', t => {
   t.is(list.getNode(list.size() - 1)._data, '4');
 });
 
+test('getNode() throws a RangeError if the specified index is greater than or equal to the list\'s size', t => {
+  const size = list.size();
+  const index = size;
+  const error = t.throws(() => {
+    list.getNode(index);
+  }, RangeError);
+
+  t.is(error.message, `Index (${index}) is greater than or equal to size (${size}).`);
+});
+
 test('getLast() returns the last element', t => {
   t.is(list.getLast(), '4');
 });
 
+test('getLast() returns null if the list is empty', t => {
+  const newList = new LinkedList();
+
+  t.is(newList.getLast(), null);
+});
+
 test('getLastNode() returns the last node', t => {
   t.is(list.getLastNode()._data, '4');
+});
+
+test('getLastNode() returns null if the list is empty', t => {
+  const newList = new LinkedList();
+
+  t.is(newList.getLastNode(), null);
 });
 
 test('toNodeArray() returns the list\'s nodes as an array', t => {

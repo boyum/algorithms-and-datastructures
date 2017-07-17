@@ -28,11 +28,13 @@
   },
   "ava": {
     "babel": "inherit",
+    "color": true,
     "concurrency": 5,
     "failFast": true,
     "failWithoutAssertions": false,
     "files": [
-      "linked-list/**/*.test.js"
+      "lists/linked-list/**/*.test.js",
+      "sorting/bubble-sort/**/*.test.js"
     ],
     "modules": true,
     "powerAssert": false,
@@ -40,7 +42,8 @@
       "babel-register"
     ],
     "source": [
-      "linked-list/**/*.js"
+      "lists/linked-list/**/*.js",
+      "sorting/bubble-sort/**/*.js"
     ],
     "tap": true
   },

@@ -1,10 +1,8 @@
-// Const LinkedListNode = require('./linked-list.test');
 import LinkedListNode from './linked-list-node';
 /**
  * Implementation of Java's java.util.LinkedList
  * https://docs.oracle.com/javase/7/docs/api/java/util/LinkedList.html
  */
-// class LinkedList {
 export default class LinkedList {
   constructor() {
     this._size = 0;
@@ -23,7 +21,7 @@ export default class LinkedList {
     const newNode = new LinkedListNode(item);
 
     if (node === null) {
-      node = newNode;
+      this._first = newNode;
     } else {
       while (node._next !== null) {
         node = node._next;
@@ -40,22 +38,21 @@ export default class LinkedList {
    * @param {number} index
    */
   addAtIndex(item, index) {
-    // if (index > (this._size)) {
-    //   return;
-    // }
+    if (index > (this._size)) {
+      return;
+    }
 
     const newNode = new LinkedListNode(item);
 
     const prevNode = this.getNode(index - 1);
-    
-    if (prevNode !== null) {
+
+    if (prevNode === null) {
+      this._first = newNode;
+    } else {
       const nextNode = prevNode._next;
       prevNode._next = newNode;
       newNode._next = nextNode;
-    } else {
-      this._first = newNode;
     }
-
 
     this._size++;
   }
@@ -67,7 +64,7 @@ export default class LinkedList {
   //  * @param {number} [index]
   //  */
   // addAll(list, index) {
-  //   // TODO: Implement
+  //
   // }
 
   /**
@@ -87,7 +84,6 @@ export default class LinkedList {
    * Remove every item from the list
    */
   clear() {
-    // TODO: Fix memory leak problem
     if (this._size === 0) {
       return;
     }
@@ -111,9 +107,9 @@ export default class LinkedList {
    */
   clone() {
     const clone = new LinkedList();
-    // Let node = this._first;
+    const node = this._first;
 
-    // clone._first = node.clone();
+    clone._first = node.clone();
 
     const cloneNode = clone._first;
 
@@ -183,7 +179,7 @@ export default class LinkedList {
     if (node === null) {
       return null;
     }
-    
+
     while (node._next !== null && i++ < index) {
       node = node._next;
     }
@@ -228,6 +224,24 @@ export default class LinkedList {
         lastNode = node;
       }
     });
+    return lastNode._data;
+  }
+
+  /**
+   * Returns the list's last node
+   *
+   * @return {LinkedListNode}
+   */
+  getLastNode() {
+    if (this._size === 0) {
+      return;
+    }
+    let lastNode;
+    this.traverse((node, index) => {
+      if (index === (this._size - 1)) {
+        lastNode = node;
+      }
+    });
     return lastNode;
   }
 
@@ -246,7 +260,7 @@ export default class LinkedList {
     let index = -1;
 
     this.traverse((node, i) => {
-      if (node === item) {
+      if (index === -1 && node._data === item) {
         index = i;
       }
     });
@@ -269,7 +283,7 @@ export default class LinkedList {
     let index = -1;
 
     this.traverse((node, i) => {
-      if (node === item) {
+      if (node._data === item) {
         index = i;
       }
     });
@@ -299,10 +313,49 @@ export default class LinkedList {
     let i = 0;
 
     while (node !== null) {
-      callback(node, i++);
+      callback(node, i);
 
       node = node._next;
+      i++;
     }
+  }
+
+  /**
+   * Returns the linked list's nodes as an array
+   *
+   * @return {LinkedListNode[]}
+   */
+  toNodeArray() {
+    const arr = new Array(this._size);
+
+    this.traverse((node, index) => {
+      arr[index] = node;
+    });
+
+    return arr;
+  }
+
+  /**
+   * Returns the linked list's data as an array.
+   *
+   * @return {*[]}
+   */
+  toArray() {
+    const arr = new Array(this._size);
+
+    this.traverse((node, index) => {
+      arr[index] = node._data;
+    });
+
+    return arr;
+  }
+
+  /**
+   * Returns a string representation of the array
+   * @return {string}
+   */
+  toString() {
+    return this.toArray().toString();
   }
 }
 

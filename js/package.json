@@ -23,7 +23,6 @@
     "babel-register": "^6.24.1",
     "coveralls": "^2.13.1",
     "jsinspect": "^0.12.6",
-    "leakage": "^0.3.0",
     "nyc": "^11.0.3",
     "xo": "^0.18.2"
   },
@@ -49,7 +48,5 @@
     "space": true,
     "fix": true
   },
-  "dependencies": {
-    "memwatch-next": "^0.3.0"
-  }
+  "dependencies": {}
 }

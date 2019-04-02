@@ -1,11 +1,10 @@
 {
     "plugins": [
-        "transform-es2015-modules-commonjs",
-        "transform-runtime"
+        "@babel/plugin-transform-modules-commonjs",
+        "@babel/plugin-transform-runtime"
     ],
     "presets": [
-        "es2017",
-        "es2015"
+        "@babel/preset-env"
     ],
     // "ignore": "test.js",
     "env": {

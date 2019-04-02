@@ -18,6 +18,7 @@ export default class SelectionSort {
           min = j;
         }
       }
+
       if (i !== min) {
         this.swap(newArr, i, min);
       }
@@ -45,6 +46,7 @@ export default class SelectionSort {
           max = j;
         }
       }
+
       if (i !== max) {
         this.swap(newArr, i, max);
       }

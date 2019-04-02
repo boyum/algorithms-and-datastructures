@@ -26,8 +26,10 @@ export default class LinkedList {
       while (node._next !== null) {
         node = node._next;
       }
+
       node._next = newNode;
     }
+
     this._size++;
   }
 
@@ -90,6 +92,7 @@ export default class LinkedList {
     if (this._size === 0) {
       return;
     }
+
     let node = this._first;
     // Let nextNode = node === null ? null : node._next;
     let nextNode = node._next;
@@ -121,6 +124,7 @@ export default class LinkedList {
       if (index === 0) {
         clone._first = node.clone();
       }
+
       cloneNode._next = node._next === null ? null : node._next.clone();
     });
 
@@ -163,6 +167,7 @@ export default class LinkedList {
     if (this._size === 0) {
       return null;
     }
+
     return this._first._data;
   }
 
@@ -183,6 +188,7 @@ export default class LinkedList {
     while (node._next !== null && i++ < index) {
       node = node._next;
     }
+
     return node._data;
   }
 
@@ -216,6 +222,7 @@ export default class LinkedList {
     if (this._size === 0) {
       return null;
     }
+
     let lastNode;
     this.traverse((node, index) => {
       if (index === (this._size - 1)) {
@@ -234,6 +241,7 @@ export default class LinkedList {
     if (this._size === 0) {
       return null;
     }
+
     let lastNode;
     this.traverse((node, index) => {
       if (index === (this._size - 1)) {

@@ -1,6 +1,6 @@
 export default class LinkedListNode {
   constructor(data) {
-        /** @type {LinkedListNode} */
+    /** @type {LinkedListNode} */
     this._next = null;
     this._data = data;
   }

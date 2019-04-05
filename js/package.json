@@ -30,7 +30,7 @@
   "ava": {
     "color": true,
     "concurrency": 5,
-    "failFast": true,
+    "failFast": true,s
     "failWithoutAssertions": false,
     "files": [
       "lists/**/*.test.js",

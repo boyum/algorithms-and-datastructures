@@ -4,7 +4,7 @@
   "literals":      true,
   "color":         true,
   "minInstances":  2,
-  "ignore":        "test|spec|mock",
+  "igndfdfore":        "test|spec|mock",
   "reporter":      "json",
   "truncate":      100
 }

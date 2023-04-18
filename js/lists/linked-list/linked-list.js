@@ -1,4 +1,4 @@
-import LinkedListNode from './linked-list-node';
+import LinkedListNode from './linked-list-node.js';
 /**
  * Implementation of Java's java.util.LinkedList
  * https://docs.oracle.com/javase/7/docs/api/java/util/LinkedList.html
@@ -40,8 +40,10 @@ export default class LinkedList {
    * @param {number} index
    */
   addAtIndex(item, index) {
-    if (index >= (this._size)) {
-      throw new RangeError(`Index (${index}) is greater than or equal to size (${this._size}).`);
+    if (index >= this._size) {
+      throw new RangeError(
+        `Index (${index}) is greater than or equal to size (${this._size}).`,
+      );
     }
 
     if (index === 0) {
@@ -51,10 +53,10 @@ export default class LinkedList {
 
     const newNode = new LinkedListNode(item);
 
-    const prevNode = this.getNode(index - 1);
+    const previousNode = this.getNode(index - 1);
 
-    const nextNode = prevNode._next;
-    prevNode._next = newNode;
+    const nextNode = previousNode._next;
+    previousNode._next = newNode;
     newNode._next = nextNode;
 
     this._size++;
@@ -76,11 +78,11 @@ export default class LinkedList {
    * @param {*} item
    */
   addFirst(item) {
-    const tempNode = this._first;
+    const temporaryNode = this._first;
     const newNode = new LinkedListNode(item);
 
     this._first = newNode;
-    newNode._next = tempNode;
+    newNode._next = temporaryNode;
 
     this._size++;
   }
@@ -140,7 +142,7 @@ export default class LinkedList {
    * @return {boolean}
    */
   contains(item) {
-    if (this._size === 0 || typeof item === 'undefined') {
+    if (this._size === 0 || item === undefined) {
       return false;
     }
 
@@ -179,7 +181,9 @@ export default class LinkedList {
    */
   get(index) {
     if (index >= this._size) {
-      throw new RangeError(`Index (${index}) is greater than or equal to size (${this._size}).`);
+      throw new RangeError(
+        `Index (${index}) is greater than or equal to size (${this._size}).`,
+      );
     }
 
     let node = this._first;
@@ -200,7 +204,9 @@ export default class LinkedList {
    */
   getNode(index) {
     if (index >= this._size) {
-      throw new RangeError(`Index (${index}) is greater than or equal to size (${this._size}).`);
+      throw new RangeError(
+        `Index (${index}) is greater than or equal to size (${this._size}).`,
+      );
     }
 
     let node = this._first;
@@ -225,7 +231,7 @@ export default class LinkedList {
 
     let lastNode;
     this.traverse((node, index) => {
-      if (index === (this._size - 1)) {
+      if (index === this._size - 1) {
         lastNode = node;
       }
     });
@@ -244,7 +250,7 @@ export default class LinkedList {
 
     let lastNode;
     this.traverse((node, index) => {
-      if (index === (this._size - 1)) {
+      if (index === this._size - 1) {
         lastNode = node;
       }
     });
@@ -259,7 +265,7 @@ export default class LinkedList {
    * @return {number}
    */
   indexOf(item) {
-    if (this._size === 0 || typeof item === 'undefined') {
+    if (this._size === 0 || item === undefined) {
       return -1;
     }
 
@@ -282,7 +288,7 @@ export default class LinkedList {
    * @return {number}
    */
   lastIndexOf(item) {
-    if (this._size === 0 || typeof item === 'undefined') {
+    if (this._size === 0 || item === undefined) {
       return -1;
     }
 
@@ -328,13 +334,13 @@ export default class LinkedList {
    * @return {LinkedListNode[]}
    */
   toNodeArray() {
-    const arr = new Array(this._size);
+    const array = Array.from({length: this._size});
 
     this.traverse((node, index) => {
-      arr[index] = node;
+      array[index] = node;
     });
 
-    return arr;
+    return array;
   }
 
   /**
@@ -343,13 +349,13 @@ export default class LinkedList {
    * @return {*[]}
    */
   toArray() {
-    const arr = new Array(this._size);
+    const array = Array.from({length: this._size});
 
     this.traverse((node, index) => {
-      arr[index] = node._data;
+      array[index] = node._data;
     });
 
-    return arr;
+    return array;
   }
 
   /**
@@ -360,5 +366,3 @@ export default class LinkedList {
     return this.toArray().toString();
   }
 }
-
-module.exports = LinkedList;

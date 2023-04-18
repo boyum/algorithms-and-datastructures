@@ -5,26 +5,26 @@ export default class SelectionSort {
    * @return {*[]}
    */
   sortAsc(array) {
-    const newArr = [...array];
+    const newArray = [...array];
 
     let min = 0;
     let i = 0;
     let j = 1;
 
-    for (; i < newArr.length; i++) {
+    for (; i < newArray.length; i++) {
       min = i;
-      for (j = i + 1; j < newArr.length; j++) {
-        if (newArr[min] > newArr[j]) {
+      for (j = i + 1; j < newArray.length; j++) {
+        if (newArray[min] > newArray[j]) {
           min = j;
         }
       }
 
       if (i !== min) {
-        this.swap(newArr, i, min);
+        this.swap(newArray, i, min);
       }
     }
 
-    return newArr;
+    return newArray;
   }
 
   /**
@@ -33,26 +33,26 @@ export default class SelectionSort {
    * @return {*[]}
    */
   sortDesc(array) {
-    const newArr = [...array];
+    const newArray = [...array];
 
     let max = 0;
     let i = 0;
     let j = 1;
 
-    for (; i < newArr.length; i++) {
+    for (; i < newArray.length; i++) {
       max = i;
-      for (j = i + 1; j < newArr.length; j++) {
-        if (newArr[max] < newArr[j]) {
+      for (j = i + 1; j < newArray.length; j++) {
+        if (newArray[max] < newArray[j]) {
           max = j;
         }
       }
 
       if (i !== max) {
-        this.swap(newArr, i, max);
+        this.swap(newArray, i, max);
       }
     }
 
-    return newArr;
+    return newArray;
   }
 
   /**
@@ -62,9 +62,9 @@ export default class SelectionSort {
    * @param {number} index2
    */
   swap(array, index1, index2) {
-    const temp = array[index1];
+    const temporary = array[index1];
 
     array[index1] = array[index2];
-    array[index2] = temp;
+    array[index2] = temporary;
   }
 }

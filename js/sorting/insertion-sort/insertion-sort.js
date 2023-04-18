@@ -5,21 +5,21 @@ export default class InsertionSort {
    * @return {*[]}
    */
   sortAsc(array) {
-    const newArr = [...array];
+    const newArray = [...array];
 
-    for (let i = 0; i < newArr.length; i++) {
-      if (newArr[i] < newArr[i + 1]) {
-        this.swap(newArr, i, i + 1);
+    for (let i = 0; i < newArray.length; i++) {
+      if (newArray[i] < newArray[i + 1]) {
+        this.swap(newArray, i, i + 1);
       }
 
       for (let j = i; j > 0; j--) {
-        if (newArr[j] < newArr[j - 1]) {
-          this.swap(newArr, j, j - 1);
+        if (newArray[j] < newArray[j - 1]) {
+          this.swap(newArray, j, j - 1);
         }
       }
     }
 
-    return newArr;
+    return newArray;
   }
 
   /**
@@ -28,21 +28,21 @@ export default class InsertionSort {
    * @return {*[]}
    */
   sortDesc(array) {
-    const newArr = [...array];
+    const newArray = [...array];
 
-    for (let i = 0; i < newArr.length; i++) {
-      if (newArr[i] > newArr[i + 1]) {
-        this.swap(newArr, i, i + 1);
+    for (let i = 0; i < newArray.length; i++) {
+      if (newArray[i] > newArray[i + 1]) {
+        this.swap(newArray, i, i + 1);
       }
 
       for (let j = i; j > 0; j--) {
-        if (newArr[j] > newArr[j - 1]) {
-          this.swap(newArr, j, j - 1);
+        if (newArray[j] > newArray[j - 1]) {
+          this.swap(newArray, j, j - 1);
         }
       }
     }
 
-    return newArr;
+    return newArray;
   }
 
   /**
@@ -52,9 +52,9 @@ export default class InsertionSort {
    * @param {number} index2
    */
   swap(array, index1, index2) {
-    const temp = array[index1];
+    const temporary = array[index1];
 
     array[index1] = array[index2];
-    array[index2] = temp;
+    array[index2] = temporary;
   }
 }
